@@ -1,5 +1,9 @@
-
 # 🌦️ WeatherXL
+
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 **WeatherXL** is a modern, production-ready weather application built with Flutter, focused on **speed, clean architecture, and a seamless user experience**.
 
@@ -66,13 +70,13 @@ This project follows **Clean Architecture + BLoC pattern**, making it scalable a
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/weather-xl.git
+git clone https://github.com/BHANJATANMAYA/WeatherXL.git
 ```
 
 ### 2. Navigate to project
 
 ```bash
-cd weather-xl
+cd WeatherXL
 ```
 
 ### 3. Install dependencies
@@ -113,12 +117,14 @@ await Firebase.initializeApp(
 
 ## 🧯 Recent Improvements
 
+* 🔐 Implemented complete and modern Authentication Flow (Login, Register, Forgot Password)
+* 📱 Resolved UI layout overflow issues on Auth screens with responsive `Stack` and `LayoutBuilder` designs
+* ⚠️ Added robust error handling for invalid cities on the WeatherPage with immediate user feedback
 * ❌ Removed Apple Sign-In (reduced complexity)
 * 🔄 Fixed navigation using `pushAndRemoveUntil`
 * 🚀 Dynamic startup routing based on auth state
 * 🧱 Cleaned Service Locator dependencies
 * 🛠️ Fixed Firebase initialization crash
-* ⚠️ Improved error handling & user feedback
 
 ---
 
