@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'weather_page.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -32,24 +31,25 @@ class _HomePageState extends State<HomePage> {
             children: [
               const SizedBox(height: 20),
               Container(
-  decoration: BoxDecoration(
-    shape: BoxShape.circle, // make it circular
-    boxShadow: [
-      BoxShadow(
-        color: const Color(0xFF6F7FF0).withValues(alpha:0.6), // glow color
-        blurRadius: 40, // makes the glow softer
-        spreadRadius: 10, // expands the glow
-      ),
-    ],
-  ),
-  child: Lottie.asset(
-    'assets/home_ani.json',
-    height: 200,
-    width: 200,
-    fit: BoxFit.contain,
-  ),
-),
-
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle, // make it circular
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(
+                        0xFF6F7FF0,
+                      ).withValues(alpha: 0.6), // glow color
+                      blurRadius: 40, // makes the glow softer
+                      spreadRadius: 10, // expands the glow
+                    ),
+                  ],
+                ),
+                child: Lottie.asset(
+                  'assets/animations/home_ani.json',
+                  height: 200,
+                  width: 200,
+                  fit: BoxFit.contain,
+                ),
+              ),
 
               const SizedBox(height: 100),
               const Text(
@@ -63,11 +63,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const Text(
                 "Forecasts",
-                style: TextStyle(
-                  fontSize: 52,
-                  color: Colors.white,
-                  height: 1,
-                ),
+                style: TextStyle(fontSize: 52, color: Colors.white, height: 1),
               ),
               const SizedBox(height: 40),
               Container(
@@ -83,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha:0.3),
+                      color: Colors.black.withValues(alpha: 0.3),
                       offset: const Offset(0, 4),
                       blurRadius: 10,
                       spreadRadius: 1,
@@ -98,14 +94,17 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 15),
+                      horizontal: 40,
+                      vertical: 15,
+                    ),
                   ),
                   onPressed: () {
                     HapticFeedback.vibrate();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const WeatherPage()),
+                        builder: (context) => const WeatherPage(),
+                      ),
                     );
                   },
                   child: const Text(

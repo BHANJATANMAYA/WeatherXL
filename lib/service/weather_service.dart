@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:myapp/models/weathermodel.dart';
+import 'package:weatherxl/models/weathermodel.dart';
 import 'package:flutter/foundation.dart';
-
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class WeatherService {
-  static const String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
-  final String apiKey = "0bf3c8b58e323a2e62a3f5f1b41e0436";
+  // final String baseUrl = dotenv.env['API_URL'] ?? "https://api.openweathermap.org/data/2.5/weather";
+  final baseUrl = dotenv.env['API_URL'];
+  final apiKey = dotenv.env['API_KEY'];
 
   Future<WeatherModel?> getWeather(String city) async {
     try {

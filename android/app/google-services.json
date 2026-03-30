@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "515598144651",
+    "project_id": "weatherxl",
+    "storage_bucket": "weatherxl.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515598144651:android:8fa1ac359aaa1408eff08e",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515598144651-ii4ie6sod71nj2pn227mc2ijmlef3ecd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapp",
+            "certificate_hash": "12e26269b8a1740ebbb56d1516162e2e06fcd826"
+          }
+        },
+        {
+          "client_id": "515598144651-nqrmgn8vq5h41qidls1rg6f9j32kuk35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx6Hr6dY7F4CRvCtmazYUVFAm2EmK95Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515598144651-nqrmgn8vq5h41qidls1rg6f9j32kuk35.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "515598144651-0u30rqps5qbr2cm6s0htfioqnninif34.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

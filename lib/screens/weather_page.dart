@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/models/weathermodel.dart';
-import 'package:myapp/service/weather_service.dart';
+import 'package:weatherxl/models/weathermodel.dart';
+import 'package:weatherxl/service/weather_service.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -22,12 +22,39 @@ class _WeatherPageState extends State<WeatherPage> {
       _isLoading = true;
     });
 
-    final weather = await _weatherService.getWeather(_controller.text);
+    try {
+      final weather = await _weatherService.getWeather(_controller.text);
 
-    setState(() {
-      _weather = weather;
-      _isLoading = false;
-    });
+      if (weather == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Could not find weather for '${_controller.text}'. Please try again."),
+              backgroundColor: Colors.redAccent,
+            ),
+          );
+        }
+      }
+
+      setState(() {
+        if (weather != null) {
+          _weather = weather;
+        }
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("An error occurred. Please try again."),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -77,7 +104,9 @@ class _WeatherPageState extends State<WeatherPage> {
                       Text(
                         _weather!.cityName,
                         style: const TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -98,7 +127,9 @@ class _WeatherPageState extends State<WeatherPage> {
                       Text(
                         _weather!.description,
                         style: const TextStyle(
-                            fontSize: 20, color: Colors.black54),
+                          fontSize: 20,
+                          color: Colors.black54,
+                        ),
                       ),
                       const SizedBox(height: 20),
 
@@ -110,14 +141,16 @@ class _WeatherPageState extends State<WeatherPage> {
                       ),
                       const SizedBox(height: 20),
 
-                      
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          _buildInfoCard("💧", "Humidity",
-                              "${(_weather!.temperature * 2).toInt()}%"),
-                          _buildInfoCard("🌬️", "Wind", "12 km/h"),
-                          _buildInfoCard("☔", "Precip.", "30%"),
+                          _buildInfoCard(
+                            "💧",
+                            "Humidity",
+                            "${_weather!.humidity}%",
+                          ),
+                          _buildInfoCard("🌬️", "Wind", "${(_weather!.windSpeed * 3.6).toStringAsFixed(1)} km/h"),
+                          _buildInfoCard("☔", "Precip.", "${_weather!.precipitation > 0 ? _weather!.precipitation.toStringAsFixed(1) : '0'} mm"),
                         ],
                       ),
                       const SizedBox(height: 30),
@@ -148,7 +181,10 @@ class _WeatherPageState extends State<WeatherPage> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-              color: Colors.black12, blurRadius: 6, offset: const Offset(0, 3))
+            color: Colors.black12,
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
         ],
       ),
       child: Column(
@@ -156,8 +192,10 @@ class _WeatherPageState extends State<WeatherPage> {
           Text(icon, style: const TextStyle(fontSize: 24)),
           const SizedBox(height: 6),
           Text(label, style: const TextStyle(fontSize: 14)),
-          Text(value,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+          Text(
+            value,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );
