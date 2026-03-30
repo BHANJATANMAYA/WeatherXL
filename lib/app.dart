@@ -5,7 +5,7 @@ import 'package:weatherxl/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:weatherxl/features/auth/presentation/bloc/auth_event.dart';
 import 'package:weatherxl/features/auth/presentation/bloc/auth_state.dart';
 import 'package:weatherxl/features/auth/presentation/pages/login_page.dart';
-import 'package:weatherxl/screens/home.dart';
+import 'package:weatherxl/screens/get_started_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthBloc>(
           create: (_) => sl<AuthBloc>()..add(AppStarted()),
-        )
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -24,15 +24,13 @@ class MyApp extends StatelessWidget {
         home: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             if (state is AuthAuthenticated) {
-              return const HomePage();
+              return const GetStartedPage();
             }
             if (state is AuthUnauthenticated || state is AuthError) {
               return const LoginPage();
             }
             return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
+              body: Center(child: CircularProgressIndicator()),
             );
           },
         ),

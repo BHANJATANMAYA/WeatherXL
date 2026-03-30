@@ -80,8 +80,8 @@ flutter_native_splash:
   android: true
   ios: true
   web: false
-  color: "#e8f0ff"
-  # background_image: "assets/bg_imgd.png"
+  # color: "#e8f0ff"
+  background_image: "assets/splash_gradient.png"
   # branding: "assets/branding.png"
   image: "assets/icon/weather_xl.png"
 
@@ -99,6 +99,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/icon/
+  - assets/splash_gradient.png
   - .env
   - assets/animations/
   #   - images/a_dot_burr.jpeg
