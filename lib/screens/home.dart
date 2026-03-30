@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherxl/screens/weather_page.dart';
+import 'package:weatherxl/features/auth/presentation/pages/login_page.dart';
 import 'package:weatherxl/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:weatherxl/features/auth/presentation/bloc/auth_event.dart';
 import 'package:weatherxl/features/auth/presentation/bloc/auth_state.dart';
@@ -24,7 +25,10 @@ class _HomePageState extends State<HomePage> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthUnauthenticated) {
-          Navigator.of(context).popUntil((route) => route.isFirst);
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const LoginPage()),
+            (route) => false,
+          );
         }
       },
       child: Scaffold(

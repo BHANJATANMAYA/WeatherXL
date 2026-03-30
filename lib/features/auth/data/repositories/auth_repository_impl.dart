@@ -63,4 +63,9 @@ class AuthRepositoryImpl implements AuthRepository {
       () => remoteDataSource.registerWithEmail(email, password),
     );
   }
+
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    await remoteDataSource.sendPasswordResetEmail(email);
+  }
 }

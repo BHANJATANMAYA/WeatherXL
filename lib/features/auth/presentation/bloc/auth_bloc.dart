@@ -7,6 +7,8 @@ import 'package:weatherxl/features/auth/domain/usecases/login_with_google_usecas
 import 'package:weatherxl/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:weatherxl/features/auth/domain/usecases/register_with_email_usecase.dart';
 
+import 'package:weatherxl/features/auth/domain/usecases/send_password_reset_email_usecase.dart';
+
 import 'auth_event.dart';
 import 'auth_state.dart';
 
@@ -16,6 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginWithGoogleUseCase loginWithGoogle;
   final LogoutUseCase logout;
   final CheckAuthStatusUseCase checkAuthStatus;
+  final SendPasswordResetEmailUseCase sendPasswordResetEmail;
 
   AuthBloc({
     required this.loginWithEmail,
@@ -23,12 +26,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required this.loginWithGoogle,
     required this.logout,
     required this.checkAuthStatus,
+    required this.sendPasswordResetEmail,
   }) : super(AuthInitial()) {
     on<AppStarted>(_onAppStarted);
     on<LoginWithEmail>(_onLoginWithEmail);
     on<RegisterWithEmail>(_onRegisterWithEmail);
     on<LoginWithGoogle>(_onLoginWithGoogle);
     on<LogoutRequested>(_onLogoutRequested);
+    on<ForgotPasswordRequested>(_onForgotPasswordRequested);
   }
 
   /// Extracts a user-friendly error message from various exception types.
@@ -138,4 +143,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     }
   }
+
+  Future<void> _onForgotPasswordRequested(
+    ForgotPasswordRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthLoading());
+    try {
+      await sendPasswordResetEmail(event.email);
+      emit(AuthPasswordResetEmailSent());
+      emit(AuthUnauthenticated()); // revert to standard state
+    } catch (e) {
+      emit(AuthError(_friendlyError(e)));
+      emit(AuthUnauthenticated());
+    }
+  }
 }
+

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weatherxl/models/weathermodel.dart';
 import 'package:weatherxl/service/weather_service.dart';
 import 'package:weatherxl/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:weatherxl/features/auth/presentation/bloc/auth_event.dart';
+// import 'package:weatherxl/features/auth/presentation/bloc/auth_event.dart';
 import 'package:weatherxl/features/auth/presentation/bloc/auth_state.dart';
 
 class WeatherPage extends StatefulWidget {
@@ -72,9 +72,9 @@ class _WeatherPageState extends State<WeatherPage> {
     }
   }
 
-  void _logout() {
-    context.read<AuthBloc>().add(LogoutRequested());
-  }
+  // void _logout() {
+  //   context.read<AuthBloc>().add(LogoutRequested());
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,13 +100,13 @@ class _WeatherPageState extends State<WeatherPage> {
             ),
           ),
           centerTitle: true,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.logout, color: Colors.white),
-              tooltip: "Logout",
-              onPressed: _logout,
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     icon: const Icon(Icons.logout, color: Colors.white),
+          //     tooltip: "Logout",
+          //     onPressed: _logout,
+          //   ),
+          // ],
         ),
         body: Container(
           width: double.infinity,

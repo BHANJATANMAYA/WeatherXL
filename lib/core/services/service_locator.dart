@@ -12,6 +12,7 @@ import '../../features/auth/domain/usecases/login_with_email_usecase.dart';
 import '../../features/auth/domain/usecases/login_with_google_usecase.dart';
 import '../../features/auth/domain/usecases/logout_usecase.dart';
 import '../../features/auth/domain/usecases/register_with_email_usecase.dart';
+import '../../features/auth/domain/usecases/send_password_reset_email_usecase.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 
 final sl = GetIt.instance;
@@ -48,6 +49,7 @@ Future<void> initServiceLocator() async {
   sl.registerLazySingleton(() => LoginWithGoogleUseCase(sl()));
   sl.registerLazySingleton(() => LogoutUseCase(sl()));
   sl.registerLazySingleton(() => CheckAuthStatusUseCase(sl()));
+  sl.registerLazySingleton(() => SendPasswordResetEmailUseCase(sl()));
 
   // BLoC
   sl.registerFactory(
@@ -57,6 +59,7 @@ Future<void> initServiceLocator() async {
       loginWithGoogle: sl(),
       logout: sl(),
       checkAuthStatus: sl(),
+      sendPasswordResetEmail: sl(),
     ),
   );
 }

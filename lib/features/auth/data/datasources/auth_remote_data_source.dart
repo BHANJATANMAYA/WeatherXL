@@ -8,6 +8,7 @@ abstract class AuthRemoteDataSource {
   Future<UserModel> loginWithGoogle();
   Future<void> logout();
   Future<UserModel?> getCurrentUser();
+  Future<void> sendPasswordResetEmail(String email);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -76,5 +77,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> logout() async {
     await googleSignIn.signOut();
     await firebaseAuth.signOut();
+  }
+
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    await firebaseAuth.sendPasswordResetEmail(email: email);
   }
 }
