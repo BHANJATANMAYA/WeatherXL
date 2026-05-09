@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"weatherxl","appId":"1:515598144651:android:8fa1ac359aaa1408eff08e","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"weatherxl","configurations":{"android":"1:515598144651:android:8fa1ac359aaa1408eff08e","ios":"1:515598144651:ios:aef50da328922f2feff08e"}}}}}}
